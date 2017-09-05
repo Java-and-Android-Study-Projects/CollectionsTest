@@ -1,7 +1,6 @@
 package logic;
 
 import data.DummyTest;
-import gui.ChooseTestWindow;
 import gui.TestWindow;
 
 public class Test implements AnswerListener{
@@ -11,11 +10,12 @@ public class Test implements AnswerListener{
     private Question[] questions;
     private boolean isInTest;
     private int index;
+    private TestWindow testWindow;
 
 
     public static void main(String[] args) {
         Test test = new Test();
-        ChooseTestWindow chooseTestWindow = new ChooseTestWindow(test, TEST_NAMES);
+        test.testWindow = new TestWindow(test, TEST_NAMES);
 
     }
 
@@ -23,15 +23,30 @@ public class Test implements AnswerListener{
     public void reactOnAnswer(int answerIndex) {
         System.out.println(answerIndex);
         if (!isInTest) {
+            //if we are not in the test yet
             switch (answerIndex) {
+                //choose what test to run
+                // TODO: 9/5/17 add real tests
                 case 0:
                     questions = (new DummyTest()).getQuestions();
                     break;
+                case 1:
+                    questions = (new DummyTest()).getQuestions();
+                    break;
+                case 2:
+                    questions = (new DummyTest()).getQuestions();
+                    break;
+                default:
+                    showNextQuestion();
             }
+            maxPossibleScore = questions.length;
             showNextQuestion();
 
             isInTest = true;
         } else {
+            if (questions[index].isAnswerCorrect(answerIndex))
+                score++;
+
             index++;
             showNextQuestion();
         }
@@ -40,9 +55,9 @@ public class Test implements AnswerListener{
 
     private void showNextQuestion() {
         if (index < questions.length) {
-            new TestWindow(this, questions[index]);
+            testWindow.showNextQuestion(questions, index);
         } else {
-            System.out.println("finish");
+            testWindow.showResult(score, maxPossibleScore);
         }
     }
 
