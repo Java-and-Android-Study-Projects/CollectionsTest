@@ -15,6 +15,6 @@ public class DummyQuestion implements Question {
 
     @Override
     public boolean isAnswerCorrect(int i) {
-        return false;
+        return true;
     }
 }
