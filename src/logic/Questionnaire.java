@@ -1,5 +1,5 @@
 package logic;
 
-public abstract class Questionnaire {
-    public abstract Question[] getQuestions();
+public interface Questionnaire {
+    Question[] getQuestions();
 }

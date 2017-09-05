@@ -3,7 +3,7 @@ package data;
 import logic.Question;
 import logic.Questionnaire;
 
-public class DummyTest extends Questionnaire {
+public class DummyTest implements Questionnaire {
     @Override
     public Question[] getQuestions() {
         Question[] questions = new Question[10];
