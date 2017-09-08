@@ -5,13 +5,13 @@ import gui.TestWindow;
 
 public class Test implements AnswerListener{
     public static final String[] TEST_NAMES = {"Maps", "Sets", "Lists"};
+    private boolean isInTest;
 
     private int score, maxPossibleScore;
     private Question[] questions;
-    private boolean isInTest;
-    private int index;
-    private TestWindow testWindow;
+    private int questionPosition;
 
+    private TestWindow testWindow;
 
     public static void main(String[] args) {
         Test test = new Test();
@@ -44,18 +44,18 @@ public class Test implements AnswerListener{
 
             isInTest = true;
         } else {
-            if (questions[index].isAnswerCorrect(answerIndex))
+            if (questions[questionPosition].isAnswerCorrect(answerIndex))
                 score++;
 
-            index++;
+            questionPosition++;
             showNextQuestion();
         }
 
     }
 
     private void showNextQuestion() {
-        if (index < questions.length) {
-            testWindow.showNextQuestion(questions, index);
+        if (questionPosition < questions.length) {
+            testWindow.showNextQuestion(questions, questionPosition);
         } else {
             testWindow.showResult(score, maxPossibleScore);
         }
