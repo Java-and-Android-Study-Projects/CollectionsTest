@@ -1,6 +1,7 @@
 package logic;
 
 import data.DummyTest;
+import data.Lists.QuestionBuilder;
 import gui.TestWindow;
 
 public class Test implements AnswerListener{
@@ -34,7 +35,7 @@ public class Test implements AnswerListener{
                     questions = (new DummyTest()).getQuestions();
                     break;
                 case 2:
-                    questions = (new DummyTest()).getQuestions();
+                    questions = (new QuestionBuilder()).getQuestions();
                     break;
                 default:
                     showNextQuestion();
